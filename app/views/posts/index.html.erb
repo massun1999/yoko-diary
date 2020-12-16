@@ -1,0 +1,21 @@
+<div class="main">
+  <div class="header ">
+    <h1 class="main-title">葉子の日記</h1>
+  </div>
+
+  <div class="content-main">
+    <%= form_with model: @post, url: posts_path, local: true do |f| %>
+      <%= f.text_area :text, class: "post-text" %>
+      <%= f.submit "投稿する", class:"btn"%>
+    <% end %>
+    <div class="contents">
+      <% @posts.each do |post| %>
+        <div class="content">
+          <%= simple_format(post.text) %>
+          <%= link_to "削除", post_path(post), method: :delete, class:"delete-btn" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>
