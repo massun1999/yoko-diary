@@ -4,15 +4,19 @@
   </div>
 
   <div class="content-main">
-    <%= form_with model: @post, url: posts_path, local: true do |f| %>
-      <%= f.text_area :text, class: "post-text" %>
-      <%= f.submit "投稿する", class:"btn"%>
+    <%= form_with model: @post, url: posts_path,id: "form", local: true do |f| %>
+      <%= f.text_area :text, class: "post-text" ,id:"text"%>
+      <%= f.submit "投稿する", class:"btn", id:"submit"%>
     <% end %>
     <div class="contents">
+
+    <div id="list">
+    </div>
+
       <% @posts.each do |post| %>
         <div class="content">
           <%= simple_format(post.text) %>
-          <%= link_to "削除", post_path(post), method: :delete, class:"delete-btn" %>
+          <%= post.created_at.strftime('%Y/%m/%d') %>
         </div>
       <% end %>
     </div>
